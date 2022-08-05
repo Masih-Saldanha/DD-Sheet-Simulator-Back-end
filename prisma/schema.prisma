@@ -1,0 +1,104 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider          = "postgresql"
+  url               = env("DATABASE_URL")
+  shadowDatabaseUrl = env("DATABASE_URL")
+}
+
+model Users {
+  id          Int          @id @default(autoincrement())
+  email       String       @unique
+  userPicture String?
+  userName    String
+  password    String
+  characters  Characters[]
+
+  @@map("users")
+}
+
+model Stats {
+  id           Int          @id @default(autoincrement())
+  strength     Int
+  dexterity    Int
+  constitution Int
+  intelligence Int
+  wisdon       Int
+  charisma     Int
+  characters   Characters[]
+
+  @@map("stats")
+}
+
+model Races {
+  id         Int          @id @default(autoincrement())
+  raceName   String       @unique
+  raceAPI    String       @unique
+  characters Characters[]
+
+  @@map("races")
+}
+
+model Backgrounds {
+  id             Int          @id @default(autoincrement())
+  backgroundName String       @unique
+  backgroundAPI  String       @unique
+  characters     Characters[]
+
+  @@map("backgrounds")
+}
+
+model Bios {
+  id          Int          @id @default(autoincrement())
+  heigth      Float?
+  weigth      Float?
+  age         Int?
+  description String?
+  characters  Characters[]
+
+  @@map("bios")
+}
+
+model Characters {
+  id                Int                 @id @default(autoincrement())
+  charName          String
+  charPicture       String?
+  userId            Int
+  statsId           Int
+  raceId            Int
+  backgroundId      Int
+  bioId             Int
+  users             Users               @relation(fields: [userId], references: [id])
+  stats             Stats               @relation(fields: [statsId], references: [id])
+  races             Races               @relation(fields: [raceId], references: [id])
+  backgrounds       Backgrounds         @relation(fields: [backgroundId], references: [id])
+  bios              Bios                @relation(fields: [bioId], references: [id])
+  charactersClasses CharactersClasses[]
+
+  @@map("characters")
+}
+
+model Classes {
+  id                Int                 @id @default(autoincrement())
+  className         String              @unique
+  classAPI          String              @unique
+  charactersClasses CharactersClasses[]
+
+  @@map("classes")
+}
+
+model CharactersClasses {
+  id          Int        @id @default(autoincrement())
+  classLevel  Int
+  classId     Int
+  characterId Int
+  classes     Classes    @relation(fields: [classId], references: [id])
+  characters  Characters @relation(fields: [characterId], references: [id])
+
+  @@map("charactersClasses")
+}
