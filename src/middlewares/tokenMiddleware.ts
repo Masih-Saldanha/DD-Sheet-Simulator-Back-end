@@ -5,9 +5,11 @@ import { throwError } from "../utils/errorTypeUtils.js";
 
 
 export interface TokenData {
-    id: number,
-    email: string,
-    iat: number
+    id: number;
+    email: string;
+    userName: string;
+    userPicture?: string;
+    iat: number;
 };
 
 export async function validateToken(req: Request, res: Response, next: NextFunction) {
