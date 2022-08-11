@@ -28,7 +28,7 @@ model Stats {
   dexterity    Int
   constitution Int
   intelligence Int
-  wisdon       Int
+  wisdom       Int
   charisma     Int
   characters   Characters[]
 
@@ -72,12 +72,12 @@ model Characters {
   statsId           Int
   raceId            Int
   backgroundId      Int
-  bioId             Int
+  biosId             Int
   users             Users               @relation(fields: [userId], references: [id])
   stats             Stats               @relation(fields: [statsId], references: [id])
   races             Races               @relation(fields: [raceId], references: [id])
   backgrounds       Backgrounds         @relation(fields: [backgroundId], references: [id])
-  bios              Bios                @relation(fields: [bioId], references: [id])
+  bios              Bios                @relation(fields: [biosId], references: [id])
   charactersClasses CharactersClasses[]
 
   @@map("characters")

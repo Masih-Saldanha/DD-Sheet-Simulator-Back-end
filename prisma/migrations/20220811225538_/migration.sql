@@ -16,7 +16,7 @@ CREATE TABLE "stats" (
     "dexterity" INTEGER NOT NULL,
     "constitution" INTEGER NOT NULL,
     "intelligence" INTEGER NOT NULL,
-    "wisdon" INTEGER NOT NULL,
+    "wisdom" INTEGER NOT NULL,
     "charisma" INTEGER NOT NULL,
 
     CONSTRAINT "stats_pkey" PRIMARY KEY ("id")
@@ -60,7 +60,7 @@ CREATE TABLE "characters" (
     "statsId" INTEGER NOT NULL,
     "raceId" INTEGER NOT NULL,
     "backgroundId" INTEGER NOT NULL,
-    "bioId" INTEGER NOT NULL,
+    "biosId" INTEGER NOT NULL,
 
     CONSTRAINT "characters_pkey" PRIMARY KEY ("id")
 );
@@ -118,7 +118,7 @@ ALTER TABLE "characters" ADD CONSTRAINT "characters_raceId_fkey" FOREIGN KEY ("r
 ALTER TABLE "characters" ADD CONSTRAINT "characters_backgroundId_fkey" FOREIGN KEY ("backgroundId") REFERENCES "backgrounds"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "characters" ADD CONSTRAINT "characters_bioId_fkey" FOREIGN KEY ("bioId") REFERENCES "bios"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE "characters" ADD CONSTRAINT "characters_biosId_fkey" FOREIGN KEY ("biosId") REFERENCES "bios"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "charactersClasses" ADD CONSTRAINT "charactersClasses_characterId_fkey" FOREIGN KEY ("characterId") REFERENCES "characters"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
