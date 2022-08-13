@@ -20,7 +20,7 @@ async function getUserCharactersListByUserId(userId: number) {
 };
 
 async function createCharacter(charactersFullData: CharactersFullData) {
-    await prisma.characters.create({
+    return await prisma.characters.create({
         data: {
             userId: charactersFullData.userId,              // PEGA DO TOKEN
             charName: charactersFullData.charName,

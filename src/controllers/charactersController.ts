@@ -18,9 +18,9 @@ async function createCharacter(req: Request, res: Response) {
     const userData: TokenData = res.locals.userDataFromToken;
     const charData: CharactersDataSchemaFinal = req.body;
     
-    await charactersService.createCharacter(userData.id, charData);
+    const data = await charactersService.createCharacter(userData.id, charData);
 
-    res.sendStatus(200);
+    res.status(200).send(data);
 };
 
 const charactersController = {

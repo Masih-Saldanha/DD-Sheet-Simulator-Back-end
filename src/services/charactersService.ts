@@ -22,7 +22,7 @@ async function createCharacter(userId: number, characterData: CharactersDataSche
         biosId,
         classList: characterData.charactersClasses
     };
-    await charactersRepository.createCharacter(charData)
+    return await charactersRepository.createCharacter(charData)
 };
 
 const charactersService = {
