@@ -9,5 +9,6 @@ const charactersRouter = Router();
 
 charactersRouter.get("/characters/", validateToken, charactersController.getUserCharactersList);
 charactersRouter.post("/characters/", validateToken, validateSchema(characterSchema.character), charactersController.createCharacter);
+charactersRouter.get("/characters/:charId", validateToken, charactersController.getCharacterByCharId);
 
 export default charactersRouter;

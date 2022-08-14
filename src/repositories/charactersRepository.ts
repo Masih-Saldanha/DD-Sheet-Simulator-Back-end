@@ -41,9 +41,27 @@ async function createCharacter(charactersFullData: CharactersFullData) {
     });
 };
 
+async function getCharacterByCharId(id: number) {
+    return prisma.characters.findUnique({
+        where: { id },
+        include: {
+            stats: true,
+            races: true,
+            backgrounds: true,
+            bios: true,
+            charactersClasses: {
+                include: {
+                    classes: true
+                },
+            },
+        }
+    });
+};
+
 const charactersRepository = {
     getUserCharactersListByUserId,
     createCharacter,
+    getCharacterByCharId
 };
 
 export default charactersRepository;
